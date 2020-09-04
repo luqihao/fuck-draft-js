@@ -47,10 +47,7 @@ let stillComposing = false;
 let textInputData = '';
 
 var DraftEditorCompositionHandler = {
-  onBeforeInput: function (
-    editor: DraftEditor,
-    e: SyntheticInputEvent<>,
-  ): void {
+  onBeforeInput: function(editor: DraftEditor, e: SyntheticInputEvent<>): void {
     // eslint-disable-next-line no-console
     textInputData = (textInputData || '') + e.data;
   },
@@ -59,7 +56,7 @@ var DraftEditorCompositionHandler = {
    * A `compositionstart` event has fired while we're still in composition
    * mode. Continue the current composition session to prevent a re-render.
    */
-  onCompositionStart: function (editor: DraftEditor): void {
+  onCompositionStart: function(editor: DraftEditor): void {
     stillComposing = true;
   },
 
@@ -77,7 +74,7 @@ var DraftEditorCompositionHandler = {
    * twice could break the DOM, we only use the first event. Example: Arabic
    * Google Input Tools on Windows 8.1 fires `compositionend` three times.
    */
-  onCompositionEnd: function (editor: DraftEditor): void {
+  onCompositionEnd: function(editor: DraftEditor): void {
     resolved = false;
     stillComposing = false;
     setTimeout(() => {
@@ -92,7 +89,7 @@ var DraftEditorCompositionHandler = {
    * the arrow keys are used to commit, prevent default so that the cursor
    * doesn't move, otherwise it will jump back noticeably on re-render.
    */
-  onKeyDown: function (editor: DraftEditor, e: SyntheticKeyboardEvent<>): void {
+  onKeyDown: function(editor: DraftEditor, e: SyntheticKeyboardEvent<>): void {
     if (!stillComposing) {
       // If a keydown event is received after compositionend but before the
       // 20ms timer expires (ex: type option-E then backspace, or type A then
@@ -113,10 +110,7 @@ var DraftEditorCompositionHandler = {
    * characters that we do not want. `preventDefault` allows the composition
    * to be committed while preventing the extra characters.
    */
-  onKeyPress: function (
-    editor: DraftEditor,
-    e: SyntheticKeyboardEvent<>,
-  ): void {
+  onKeyPress: function(editor: DraftEditor, e: SyntheticKeyboardEvent<>): void {
     if (e.which === Keys.RETURN) {
       e.preventDefault();
     }
@@ -137,7 +131,7 @@ var DraftEditorCompositionHandler = {
    * Resetting innerHTML will move focus to the beginning of the editor,
    * so we update to force it back to the correct place.
    */
-  resolveComposition: function (editor: DraftEditor): void {
+  resolveComposition: function(editor: DraftEditor): void {
     if (stillComposing) {
       return;
     }
@@ -176,7 +170,6 @@ var DraftEditorCompositionHandler = {
           editor.props.handleBeforeInput(composedChars, editorState),
         )
       ) {
-        console.log(1);
         return;
       }
       // If characters have been composed, re-rendering with the update
@@ -191,13 +184,10 @@ var DraftEditorCompositionHandler = {
       editor.update(
         EditorState.push(editorState, contentState, 'insert-characters'),
       );
-      console.log(2);
       return;
     }
-    console.log(3);
 
     if (mustReset) {
-      console.log(4);
       editor.update(
         EditorState.set(editorState, {
           nativelyRenderedContent: null,
