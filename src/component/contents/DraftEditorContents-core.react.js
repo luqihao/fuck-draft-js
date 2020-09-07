@@ -125,12 +125,9 @@ class DraftEditorContents extends React.Component<Props> {
     );
   }
 
-  componentDidMount() {
-    console.log('编辑器data-contents正常初始化');
-  }
-
   componentDidCatch(err) {
     console.error('编辑器data-contents发生错误：', err);
+    nullthrows(err, '编辑器data-contents发生错误：');
   }
 
   render(): React.Node {
