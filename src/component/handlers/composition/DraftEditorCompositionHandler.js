@@ -34,7 +34,7 @@ const isSelectionAtLeafStart = require('isSelectionAtLeafStart');
  * leads to composed characters being resolved and re-render occurring
  * sooner than we want.
  */
-const RESOLVE_DELAY = 100;
+const RESOLVE_DELAY = 50;
 
 /**
  * A handful of variables used to track the current composition and its
