@@ -79,6 +79,7 @@ var DraftEditorCompositionHandler = {
     stillComposing = false;
     setTimeout(() => {
       if (!resolved) {
+        console.log('RESOLVE_DELAY:', RESOLVE_DELAY);
         DraftEditorCompositionHandler.resolveComposition(editor);
       }
     }, RESOLVE_DELAY);
