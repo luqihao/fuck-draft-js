@@ -125,6 +125,10 @@ class DraftEditorContents extends React.Component<Props> {
     );
   }
 
+  componentDidCatch(err) {
+    console.error('data-content component error:', err);
+  }
+
   render(): React.Node {
     const {
       blockRenderMap,
