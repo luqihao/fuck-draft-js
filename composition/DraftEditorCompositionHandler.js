@@ -97,9 +97,9 @@ var DraftEditorCompositionHandler = {
       // backspace in 2-Set Korean), we should immediately resolve the
       // composition and reinterpret the key press in edit mode.
 
-      if (!resolved) {
-        DraftEditorCompositionHandler.resolveComposition(editor);
-      }
+      // if (!resolved) {
+      DraftEditorCompositionHandler.resolveComposition(editor);
+      // }
       editor._onKeyDown(e);
       return;
     }
